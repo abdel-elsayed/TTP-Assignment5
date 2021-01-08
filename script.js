@@ -1,11 +1,15 @@
 const grid = document.getElementById("grid1")
-let colNum = 1;
+let colNum = 2;
 let rowNum = 1;
 
 
 // getting the Buttons to add and remove rows
 const addRow = document.getElementById("addRow")
 const remRow = document.getElementById("remRow")
+
+// getting the Buttons to add and remove columns
+const addCol = document.getElementById("addCol")
+const remCol = document.getElementById("remCol")
 
 // Event listener to add rows
 addRow.addEventListener("click", function(){
@@ -27,4 +31,18 @@ remRow.addEventListener("click", function(){
     grid.lastElementChild.remove()
     rowNum--;
     console.log(rowNum)
+})
+
+addCol.addEventListener("click", function(){
+    let Rows = document.querySelectorAll("tr")
+
+    for(let i = 0; i < Rows.length; i++) {
+       
+        let newCell=document.createElement("td")
+        newCell.classList.add("grid-item")
+        newCell.innerText = "new-cell-col"
+        
+        Rows[i].appendChild(newCell);
+    }
+    colNum++
 })
