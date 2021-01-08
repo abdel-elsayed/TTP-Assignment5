@@ -9,6 +9,10 @@ const remRow = document.getElementById("remRow")
 const addCol = document.getElementById("addCol")
 const remCol = document.getElementById("remCol")
 
+// getting the colorAll button
+const colorAll = document.getElementById("colorAll")
+
+
 // Event listener to add rows
 addRow.addEventListener("click", function(){
     let newRow = document.createElement("tr");
@@ -62,3 +66,15 @@ remCol.addEventListener("click", function(){
 function setCurrentColor(){
 return `${document.getElementById("color-select").value}`
 }
+
+colorAll.addEventListener("click", function(){
+    // get all cells in the table
+    let allCells = document.getElementsByTagName("td");
+    let allCellsList = [...allCells];
+
+    // change the background color of each uncolored cell and remove "uncolored" class
+    allCellsList.forEach(cell => {
+        cell.style.backgroundColor = setCurrentColor();
+        cell.classList.remove("uncolored");
+    })
+});
