@@ -1,8 +1,6 @@
 const grid = document.getElementById("grid1")
 let colNum = 2;
 let rowNum = 1;
-
-
 // getting the Buttons to add and remove rows
 const addRow = document.getElementById("addRow")
 const remRow = document.getElementById("remRow")
@@ -55,3 +53,8 @@ remCol.addEventListener("click", function(){
     }
     colNum--;
 })
+
+function setCurrentColor(){
+let currentColor =  `${document.getElementById("color-select").value}`
+alert(currentColor)
+}
