@@ -1,5 +1,5 @@
 const grid = document.getElementById("grid1")
-let colNum = 2;
+let colNum = 1;
 let rowNum = 1;
 
 
