@@ -17,17 +17,17 @@
         <li><button id="addCol" >Add a new Col</button></li>
         <li><button id="remCol" >Remove a Col</button></li>
     </ul>
-    <form>
-        <p>
-            <label>Select list</label>
-            <select id="color-select" onchange="setCurrentColor(this.value)"> <!-- 6 -->
-                <option value="#87bac9">blue</option>
-                <option value="#db5881">pink</option>
-                <option value="#d4e094">green</option>
-                <option value="#f7e277">yellow</option>
-            </select>
-        </p>
-    </form>
+    <p>
+        <label>Select list</label>
+        <select id="color-select" onchange="setCurrentColor(this.value)"> 
+            <option value="#0000FF">blue</option>
+            <option value="#db5881">pink</option>
+            <option value="#FF0000">red</option>
+            <option value="#f7e277">yellow</option>
+        </select>
+    </p>
+
+    <button id="colorAll" >Color All</button>
     <script src="script.js"></script>
 </body>
 </html>
