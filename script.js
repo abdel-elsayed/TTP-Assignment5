@@ -46,3 +46,12 @@ addCol.addEventListener("click", function(){
     }
     colNum++
 })
+
+remCol.addEventListener("click", function(){
+    let Rows = document.querySelectorAll("tr")
+    for(let i = 0; i < Rows.length; i++) {
+       
+        Rows[i].deleteCell(colNum-1)
+    }
+    colNum--;
+})
