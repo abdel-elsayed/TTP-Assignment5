@@ -18,18 +18,18 @@ const colorAllUncolored = document.getElementById("colorAllUncolored")
 // getting the clearAll button
 const clearAll= document.getElementById("clearAll")
 
+// used for part 10 - tracks user holding down mouse
+let coloring = false
+
+/* Feature #6: click on a single cell, changing its color to the currently selected color */
+let currentColor = `${document.getElementById("color-select").value}`
 
 // Event listener to add rows
 addRow.addEventListener("click", function(){
     let newRow = document.createElement("tr");
     for(let i=0;i<colNum;i++ ){
-        let newCell=document.createElement("td")
-        newCell.addEventListener("click", function(){
-            newCell.style.background = setCurrentColor()
-        });
-        newCell.classList.add("grid-item")
-        newCell.classList.add("uncolored")
-        newCell.innerText = "new-cell-row"
+        let newCell=document.createElement("td")   
+        initializeCell(newCell) 
         newRow.appendChild(newCell);
     }
     rowNum++;
@@ -52,12 +52,7 @@ addCol.addEventListener("click", function(){
     for(let i = 0; i < Rows.length; i++) {
        
         let newCell=document.createElement("td")
-        newCell.classList.add("grid-item")
-        newCell.classList.add("uncolored")
-        newCell.innerText = "new-cell-col"
-        newCell.addEventListener("click", function(){
-            newCell.style.background = setCurrentColor()
-        });
+        initializeCell(newCell) 
         Rows[i].appendChild(newCell);
     }
     colNum++
@@ -75,8 +70,9 @@ remCol.addEventListener("click", function(){
 
 // function that gets called when the value of the drop down menu changes for coloring
 function setCurrentColor(){
-return `${document.getElementById("color-select").value}`
-
+    this.style.backgroundColor = currentColor;
+    // remove class "uncolored" because cell is now colored
+    this.classList.remove("uncolored")
 }
 
 // Event listener to color all cells
@@ -92,7 +88,7 @@ colorAllUncolored.addEventListener("click", function(){
     
     // change the background color of each uncolored cell and remove "uncolored" class
     allCellsList.forEach(cell => {
-        cell.style.backgroundColor = setCurrentColor();
+        cell.style.backgroundColor = currentColor;
         cell.classList.remove("uncolored");
     })
 });
@@ -105,7 +101,7 @@ colorAll.addEventListener("click", function(){
 
     // change the background color of each uncolored cell and remove "uncolored" class
     allCellsList.forEach(cell => {
-        cell.style.backgroundColor = setCurrentColor();
+        cell.style.backgroundColor = currentColor;
         cell.classList.remove("uncolored");
     })
 });
@@ -125,3 +121,42 @@ allCellsList.forEach(cell => {
 
 })
     
+function initializeCell(cell) {
+    // change color on click
+    cell.addEventListener("click", setCurrentColor);
+    // give cell as class called "uncolored"
+    cell.classList.add("grid-item");
+    cell.classList.add("uncolored");
+    cell.innerText = "new-cell-row"
+
+    /* Feature #10:
+        click and hold (mouseover) from a single cell (start) to a different cell (end) 
+        such that all affected/hovered-over cells from start to end change to the 
+        currently selected color
+    */
+
+    // on mousedown, start coloring
+    cell.addEventListener("mousedown", e => {
+        coloring = true
+    });
+
+    // if coloring, set background color of cell to the currentColor and remove the uncolored class
+    cell.addEventListener("mousemove", e => {
+        if (coloring) {
+            cell.style.backgroundColor = currentColor;
+            cell.classList.remove("uncolored");
+        }
+    });
+
+    // if coloring, on mouseup, set coloring to false
+    cell.addEventListener("mouseup", e => {
+        if (coloring) {
+            coloring = false;
+        }
+    })
+}
+
+// sets currentColor based on the color selected from dropdown
+function colorUsed(color) {
+    currentColor = color;
+}
