@@ -14,6 +14,9 @@ addRow.addEventListener("click", function(){
     let newRow = document.createElement("tr");
     for(let i=0;i<colNum;i++ ){
         let newCell=document.createElement("td")
+        newCell.addEventListener("click", function(){
+            newCell.style.background = setCurrentColor()
+        });
         newCell.classList.add("grid-item")
         newCell.innerText = "new-cell-row"
         newRow.appendChild(newCell);
@@ -39,7 +42,9 @@ addCol.addEventListener("click", function(){
         let newCell=document.createElement("td")
         newCell.classList.add("grid-item")
         newCell.innerText = "new-cell-col"
-        
+        newCell.addEventListener("click", function(){
+            newCell.style.background = setCurrentColor()
+        });
         Rows[i].appendChild(newCell);
     }
     colNum++
@@ -55,6 +60,5 @@ remCol.addEventListener("click", function(){
 })
 
 function setCurrentColor(){
-let currentColor =  `${document.getElementById("color-select").value}`
-alert(currentColor)
+return `${document.getElementById("color-select").value}`
 }
