@@ -7,16 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-     <table calss="grid-container" id="grid1">
-            <tr class="grid-item">
-                <td class="grid-item">1</td>
-                <td class="grid-item">2</td>
-            </tr>
-            <tr class="grid-item">
-                <td class="grid-item">3</td>
-                <td class="grid-item">4</td>
-            </tr>
-    </table>
+     <table calss="grid-container" id="grid1"> </table>
    
     <ul>
         <li><button id="addRow" >Add a new Row</button></li>
@@ -26,6 +17,17 @@
         <li><button id="addCol" >Add a new Col</button></li>
         <li><button id="remCol" >Remove a Col</button></li>
     </ul>
+    <form>
+        <p>
+            <label>Select list</label>
+            <select id="color-select" onchange="setCurrentColor(this.value)"> <!-- 6 -->
+                <option value="#87bac9">blue</option>
+                <option value="#db5881">pink</option>
+                <option value="#d4e094">green</option>
+                <option value="#f7e277">yellow</option>
+            </select>
+        </p>
+    </form>
     <script src="script.js"></script>
 </body>
 </html>
